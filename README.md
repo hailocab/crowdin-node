@@ -3,13 +3,13 @@ crowdin-node
 
 Nodejs module for accessing Crowdin.net
 
-# Install
+## Install
 
 ```bash
 npm install
 ```
 
-# Usage
+## Usage
 
 ```js
 var crowdin = new Crowdin({
@@ -18,24 +18,24 @@ var crowdin = new Crowdin({
 });
 ```
 
-# API
+## API
 
-## .getInfo()
+### .getInfo()
 Returns a Promise of project information.
 
-## .getLanguages()
+### .getLanguages()
 Returns a Promise of project languages.
 
-## .downloadToZip(path)
+### .downloadToZip(path)
 Downloads the translations ZIP to the specified path and returns an empty Promise.
 
-## .downloadToPath(path)
+### .downloadToPath(path)
 Downloads and extracts the translations ZIP to the specified path. Returns an empty Promise.
 
-## .downloadToObject()
+### .downloadToObject()
 Downloads, extracts and convert the translations ZIP to a JS object. Returns a Promise.
 
-# Tests
+## Tests
 
 Tests are written with [mocha](http://visionmedia.github.io/mocha/)
 

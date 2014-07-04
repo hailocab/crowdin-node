@@ -66,8 +66,9 @@ api.post('/test/info', function(req, res) {
     );
 });
 
+var sendZip = 'yaml';
 api.get('/test/download/all.zip', function(req, res) {
-    fs.createReadStream(__dirname + '/all.zip')
+    fs.createReadStream(__dirname + '/' + sendZip + '.zip')
     .pipe(res);
 });
 
@@ -272,11 +273,40 @@ describe('#downloadAndParse', function() {
 
 describe('#downloadToObject', function() {
     it('should download the ZIP contents and resolve a JS object', function(done) {
+        sendZip = 'yaml';
         crowdin.downloadToObject()
         .then(function(data) {
             data.should.be.a.type('object');
             data.should.have.property('fr');
             data.should.have.property('es-ES');
+            done();
+        })
+        .catch(done);
+    });
+
+    it('should detect and parse JSON', function(done) {
+        sendZip = 'json';
+        crowdin.downloadToObject()
+        .then(function(data) {
+            data.should.be.a.type('object');
+            data.should.have.property('fr');
+            data.fr.should.be.a.type('object');
+            data.fr.should.have.property('content.hello');
+            data.fr['content.hello'].should.equal('Bonjour');
+            done();
+        })
+        .catch(done);
+    });
+
+    it('should detect and parse YAML', function(done) {
+        sendZip = 'yaml';
+        crowdin.downloadToObject()
+        .then(function(data) {
+            data.should.be.a.type('object');
+            data.should.have.property('fr');
+            data.fr.should.be.a.type('object');
+            data.fr.should.have.property('content.hello');
+            data.fr['content.hello'].should.equal('Bonjour');
             done();
         })
         .catch(done);
