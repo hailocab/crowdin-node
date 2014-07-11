@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser');
 var express = require('express');
 var fs = require('graceful-fs');
 var rimraf = require('rimraf');
@@ -15,20 +16,36 @@ var api = express();
 
 // Generic API calls
 
-api.get('/test/400', function(req, res){
+api.get('/test/400', function(req, res) {
     res.send(400);
 });
 
-api.get('/test/error', function(req, res){
+api.get('/test/error', function(req, res) {
     res.send({
         error: new Error('test')
     });
 });
 
-api.get('/test/ok', function(req, res){
+api.get('/test/ok', function(req, res) {
     res.send({
         test: "OK"
     });
+});
+
+// getRequest
+
+api.get('/test/get', function(req, res) {
+    req.query.should.have.property('key').equal(config.apiKey);
+    req.query.should.have.property('json');
+    res.send();
+});
+
+// postRequest
+
+api.post('/test/post', bodyParser.urlencoded({extended: false}), function(req, res) {
+    req.body.should.have.property('key').equal(config.apiKey);
+    req.query.should.have.property('json');
+    res.send();
 });
 
 // getInfo
@@ -65,6 +82,14 @@ api.post('/test/info', function(req, res) {
              participants_count: '6' } }
     );
 });
+
+// extract
+
+api.get('/test/extract', function(req, res) {
+    res.send();
+});
+
+// download
 
 var sendZip = 'yaml';
 api.get('/test/download/all.zip', function(req, res) {
@@ -166,6 +191,26 @@ describe('#requestData', function() {
     });
 });
 
+describe('#getRequest', function() {
+    it('should send a GET request with proper parameters to the server', function(done) {
+        crowdin.getRequest('get')
+        .then(function() {
+            done();
+        })
+        .catch(done);
+    });
+});
+
+describe('#postRequest', function() {
+    it('should send a POST request with proper parameters to the server', function(done) {
+        crowdin.postRequest('post')
+        .then(function() {
+            done();
+        })
+        .catch(done);
+    });
+});
+
 describe('#getInfo', function() {
     it('should return the project info', function(done) {
         crowdin.getInfo()
@@ -185,6 +230,16 @@ describe('#getLanguages', function() {
                 [ { name: 'French', code: 'fr' },
                 { name: 'Spanish', code: 'es-ES' } ]
             );
+            done();
+        })
+        .catch(done);
+    });
+});
+
+describe('#extract', function() {
+    it('should call the `extract` API endpoint', function(done) {
+        crowdin.extract()
+        .then(function() {
             done();
         })
         .catch(done);
@@ -220,20 +275,6 @@ describe('#downloadToZip', function() {
             fs.exists(toPath, function(exists) {
                 exists.should.be.true;
                 fs.unlink(toPath, done);
-            });
-        })
-        .catch(done);
-    });
-});
-
-describe('#downloadToZip', function() {
-    it('should download the ZIP file to the specified path', function(done) {
-        var toPath = __dirname + "/temp/test.zip";
-        crowdin.downloadToZip(toPath)
-        .then(function() {
-            fs.exists(toPath, function(exists) {
-                exists.should.be.true;
-                done();
             });
         })
         .catch(done);
@@ -291,8 +332,8 @@ describe('#downloadToObject', function() {
             data.should.be.a.type('object');
             data.should.have.property('fr');
             data.fr.should.be.a.type('object');
-            data.fr.should.have.property('content.hello');
-            data.fr['content.hello'].should.equal('Bonjour');
+            data.fr.should.have.property('hello');
+            data.fr.hello.should.equal('Bonjour');
             done();
         })
         .catch(done);
@@ -305,8 +346,8 @@ describe('#downloadToObject', function() {
             data.should.be.a.type('object');
             data.should.have.property('fr');
             data.fr.should.be.a.type('object');
-            data.fr.should.have.property('content.hello');
-            data.fr['content.hello'].should.equal('Bonjour');
+            data.fr.should.have.property('hello');
+            data.fr.hello.should.equal('Bonjour');
             done();
         })
         .catch(done);
