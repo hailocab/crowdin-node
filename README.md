@@ -11,23 +11,25 @@ npm install
 
 ## Usage
 
+`apiKey` and `endpointUrl` parameters must be set to create the instance, an error will be thrown otherwise.
+
 ```js
 var crowdin = new Crowdin({
-    apiKey: '12345', // Must be set
-    endpointUrl: '//' // Must be set
+    apiKey: '7d38782fa7cb4b6a9fbae2de65e91989',
+    endpointUrl: 'https://api.crowdin.net/api/project/<your-project>'
 });
 ```
 
 ## API
 
-### .requestData()
+### .requestData(Object parameters)
 Returns a Promise of a call to the API endpoint with specified parameters.
 Parses the response body and rejects if the API returns an error.
 
-### .getRequest()
+### .getRequest(String endpoint)
 Returns a Promise of a GET request to the set API endpoint. Uses `requestData()`.
 
-### .postRequest()
+### .postRequest(String endpoint)
 Returns a Promise of a POST request to the set API endpoint. Uses `requestData()`.
 
 ### .getInfo()
@@ -43,13 +45,13 @@ Returns a Promise of an API call to the `extract` endpoint. Uses `getRequest()`.
 Downloads the translations ZIP and returns the Stream.
 You might call `extract()` before to ensure you have the latest translations.
 
-### .downloadToStream(stream)
+### .downloadToStream(Stream)
 Downloads the translations ZIP to the specified stream. Uses `download()` and returns an empty Promise.
 
-### .downloadToZip(path)
+### .downloadToZip(String path)
 Downloads the translations ZIP to the specified path. Uses `download()` and returns an empty Promise.
 
-### .downloadToPath(path)
+### .downloadToPath(String path)
 Downloads and extracts the translations ZIP to the specified path. Uses `download()` and returns an empty Promise.
 
 ### .downloadAndParse()
@@ -72,3 +74,8 @@ Coverage using [istanbul](http://gotwarlost.github.io/istanbul/)
 ```bash
 npm run-script coverage
 ```
+
+## License
+
+Apache 2.0
+Copyright 2014 Hailo

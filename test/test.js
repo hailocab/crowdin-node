@@ -67,20 +67,8 @@ api.post('/test/info', function(req, res) {
                last_updated: '2014-07-01 11:42:42',
                last_accessed: '2014-07-01 07:33:00' } ],
         details:
-            { source_language: { name: 'English', code: 'en' },
-             name: 'Hailo Website',
-             identifier: 'hailo-website',
-             created: '2014-06-18 12:39:39',
-             description: '',
-             join_policy: 'private',
-             last_build: '2014-07-02 07:40:39',
-             last_activity: '2014-07-01 11:42:42',
-             total_strings_count: '27',
-             total_words_count: '586',
-             duplicate_strings_count: 1,
-             duplicate_words_count: 4,
-             participants_count: '6' } }
-    );
+            { source_language: { name: 'English', code: 'en' } }
+    });
 });
 
 // extract
