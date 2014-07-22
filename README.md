@@ -1,12 +1,16 @@
 crowdin-node
 ============
 
-Nodejs module for accessing Crowdin.net
+Node module for accessing the Crowdin API
+
+## Disclaimer
+
+This is an unofficial API client library. Crowdin and the Crowdin API are the property of Crowdin, LLC.
 
 ## Install
 
 ```bash
-npm install
+npm install crowdin
 ```
 
 ## Usage
