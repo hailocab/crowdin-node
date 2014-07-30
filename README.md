@@ -27,7 +27,7 @@ var crowdin = new Crowdin({
 ## API
 
 ### .requestData(Object parameters)
-Returns a Promise of a call to the API endpoint with specified parameters.
+Returns a Promise of a call to the API endpoint with specified parameters.  
 Parses the response body and rejects if the API returns an error.
 
 ### .getRequest(String endpoint)
@@ -46,7 +46,7 @@ Returns a Promise of project languages. Uses `getInfo()`.
 Returns a Promise of an API call to the `extract` endpoint. Uses `getRequest()`.
 
 ### .download()
-Downloads the translations ZIP and returns the Stream.
+Downloads the translations ZIP and returns the Stream.  
 You might call `extract()` before to ensure you have the latest translations.
 
 ### .downloadToStream(Stream)
@@ -81,5 +81,5 @@ npm run-script coverage
 
 ## License
 
-Apache 2.0
+Apache 2.0  
 Copyright 2014 Hailo
