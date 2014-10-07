@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var fs = require('graceful-fs');
-var rimraf = require('rimraf');
+var del = require('del');
 var should = require('should');
 var stream = require('stream');
 
@@ -17,7 +17,7 @@ var api = express();
 // Generic API calls
 
 api.get('/test/400', function(req, res) {
-    res.send(400);
+    res.status(400).end();
 });
 
 api.get('/test/error', function(req, res) {
@@ -28,7 +28,7 @@ api.get('/test/error', function(req, res) {
 
 api.get('/test/ok', function(req, res) {
     res.send({
-        test: "OK"
+        test: 'OK'
     });
 });
 
@@ -91,7 +91,7 @@ api.listen(9999);
 
 // Tests before/after
 
-var tmpDir = __dirname + "/temp";
+var tmpDir = __dirname + '/temp';
 
 before(function(done) {
     fs.exists(tmpDir, function(exists) {
@@ -101,7 +101,7 @@ before(function(done) {
 });
 
 after(function(done) {
-    rimraf(tmpDir, done);
+    del(tmpDir, done);
 });
 
 // Tests
@@ -257,7 +257,7 @@ describe('#downloadToStream', function() {
 
 describe('#downloadToZip', function() {
     it('should download the ZIP file to the specified path', function(done) {
-        var toPath = __dirname + "/temp/test.zip";
+        var toPath = __dirname + '/temp/test.zip';
         crowdin.downloadToZip(toPath)
         .then(function() {
             fs.exists(toPath, function(exists) {
@@ -271,7 +271,7 @@ describe('#downloadToZip', function() {
 
 describe('#downloadToPath', function() {
     it('should download and extract the ZIP file to the specified path', function(done) {
-        var toPath = __dirname + "/temp/extract";
+        var toPath = __dirname + '/temp/extract';
         crowdin.downloadToPath(toPath)
         .then(function() {
             // Only check existence of one of the files, should be enough for a simple test

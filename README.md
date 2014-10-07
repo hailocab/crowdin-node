@@ -76,7 +76,7 @@ npm test
 Coverage using [istanbul](http://gotwarlost.github.io/istanbul/)
 
 ```bash
-npm run-script coverage
+npm run coverage
 ```
 
 ## License
