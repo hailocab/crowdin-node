@@ -71,9 +71,9 @@ api.post('/test/info', function(req, res) {
     });
 });
 
-// extract
+// export
 
-api.get('/test/extract', function(req, res) {
+api.get('/test/export', function(req, res) {
     res.send();
 });
 
@@ -224,9 +224,9 @@ describe('#getLanguages', function() {
     });
 });
 
-describe('#extract', function() {
-    it('should call the `extract` API endpoint', function(done) {
-        crowdin.extract()
+describe('#export', function() {
+    it('should call the `export` API endpoint', function(done) {
+        crowdin.export()
         .then(function() {
             done();
         })

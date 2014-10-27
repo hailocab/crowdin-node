@@ -42,12 +42,12 @@ Returns a Promise of project information. Uses `postRequest()`.
 ### .getLanguages()
 Returns a Promise of project languages. Uses `getInfo()`.
 
-### .extract()
-Returns a Promise of an API call to the `extract` endpoint. Uses `getRequest()`.
+### .export()
+Returns a Promise of an API call to the `export` endpoint. Uses `getRequest()`.
 
 ### .download()
 Downloads the translations ZIP and returns the Stream.  
-You might call `extract()` before to ensure you have the latest translations.
+You might call `export()` before to ensure you have the latest translations.
 
 ### .downloadToStream(Stream)
 Downloads the translations ZIP to the specified stream. Uses `download()` and returns an empty Promise.
