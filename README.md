@@ -67,7 +67,7 @@ Downloads, extracts and converts the translations ZIP to a JS object. Returns a 
 
 ## Tests
 
-Tests are written with [mocha](http://visionmedia.github.io/mocha/)
+Tests are written with [mocha](http://mochajs.org/)
 
 ```bash
 npm test
