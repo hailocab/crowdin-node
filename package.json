@@ -19,7 +19,7 @@
     "bluebird": "^2.9.21",
     "graceful-fs": "^3.0.6",
     "js-yaml": "^3.2.7",
-    "lodash": "^3.6.0",
+    "lodash": "^4.17.10",
     "request": "^2.54.0",
     "unzip": "^0.1.11"
   },
@@ -27,8 +27,8 @@
     "body-parser": "^1.12.2",
     "del": "^1.1.1",
     "express": "^4.12.3",
-    "istanbul": "^0.3.13",
-    "mocha": "^2.2.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
     "should": "^5.2.0"
   }
 }
