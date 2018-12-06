@@ -20,7 +20,7 @@ npm install crowdin
 ```js
 var crowdin = new Crowdin({
     apiKey: '7d38782fa7cb4b6a9fbae2de65e91989',
-    endpointUrl: 'https://api.crowdin.net/api/project/<your-project>'
+    endpointUrl: 'https://api.crowdin.com/api/project/<your-project>'
 });
 ```
 
